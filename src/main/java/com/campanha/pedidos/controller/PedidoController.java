@@ -16,8 +16,17 @@ public class PedidoController  {
     private PedidoRepository repository;
 
     // Criar pedido
+
     @PostMapping
-    public Pedidos salvar(@RequestBody Pedidos pedido) {
+    public Pedidos salvar(@RequestParam String nome,
+                          @RequestParam String telefone,
+                          @RequestParam int quantidade) {
+
+        Pedidos pedido = new Pedidos();
+        pedido.setNomeCliente(nome);
+        pedido.setTelefone(telefone);
+        pedido.setQuantidadePao(quantidade);
+
         return repository.save(pedido);
     }
 
