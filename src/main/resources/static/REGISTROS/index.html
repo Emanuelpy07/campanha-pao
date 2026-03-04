@@ -131,6 +131,7 @@ tbody tr:hover {
             <th>Quantidade</th>
             <th>Status</th>
             <th>Data</th>
+              <th>Ações</th>
           </tr>
         </thead>
 
@@ -160,6 +161,75 @@ tbody tr:hover {
 
   </div>
 </div>
+<script>
+
+    async function carregarPedidos(){
+
+        const resposta = await fetch("/pedidos");
+        const pedidos = await resposta.json();
+
+        const tbody = document.querySelector("tbody");
+        tbody.innerHTML = "";
+
+        pedidos.forEach(p => {
+
+            const linha = `
+            <tr>
+                <td>#${p.id}</td>
+                <td>${p.nomeCliente}</td>
+                <td>${p.telefone}</td>
+                <td>${p.quantidadePao}</td>
+                <td><span class="badge ${corStatus}">${p.status}</span></td>
+                <td>${new Date().toLocaleDateString()}</td>
+                <td> <button onclick="concluir(${p.id})">Concluir</button>
+                     <button onclick="retirar(${p.id})">Retirado</button>
+                </td>
+
+            </tr>
+            `;
+
+            tbody.innerHTML += linha;
+
+        });
+
+    }
+
+    carregarPedidos();
+
+
+
+
+
+</script>
+<script>
+
+    async function concluir(id){
+
+await fetch(`/pedidos/${id}/concluir`,{
+method:"PUT"
+});
+
+carregarPedidos();
+}
+
+async function retirar(id){
+
+await fetch(`/pedidos/${id}/retirar`,{
+method:"PUT"
+});
+
+carregarPedidos();
+}
+    let corStatus = "badge-pendente";
+
+if(p.status === "CONCLUIDO"){
+    corStatus = "badge-entregue";
+}
+
+if(p.status === "RETIRADO"){
+    corStatus = "badge-retirado";
+}
+</script>
 
 </body>
 </html>

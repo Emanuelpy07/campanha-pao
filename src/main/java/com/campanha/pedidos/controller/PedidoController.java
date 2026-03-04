@@ -11,25 +11,26 @@ import com.campanha.pedidos.repository.PedidoRepository;
 @RestController
 @RequestMapping("/pedidos")
 
-public class PedidoController  {
+public class PedidoController {
     @Autowired
     private PedidoRepository repository;
 
     // Criar pedido
 
     @PostMapping
-    public Pedidos salvar(@RequestParam String nome,
-                          @RequestParam String telefone,
-                          @RequestParam int quantidade,
-                          @RequestParam String unidade){
+    public void salvar(@RequestParam String nome,
+                       @RequestParam String telefone,
+                       @RequestParam int quantidade,
+                       @RequestParam String unidade) {
 
         Pedidos pedido = new Pedidos();
         pedido.setNomeCliente(nome);
         pedido.setTelefone(telefone);
         pedido.setQuantidadePao(quantidade);
-    
+        pedido.setStatus("PENDENTE");
 
-        return repository.save(pedido);
+
+        repository.save(pedido);
     }
 
     // Listar todos
@@ -38,10 +39,29 @@ public class PedidoController  {
         return repository.findAll();
     }
 
+
     // Deletar
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id) {
         repository.deleteById(id);
     }
 
+    @PutMapping("/{id}/concluir")
+    public void concluir(@PathVariable Long id) {
+
+        Pedidos pedido = repository.findById(id).get();
+        pedido.setStatus("CONCLUIDO");
+
+        repository.save(pedido);
+    }
+
+    @PutMapping("/{id}/retirar")
+    public void retirar(@PathVariable Long id) {
+
+        Pedidos pedido = repository.findById(id).get();
+        pedido.setStatus("RETIRADO");
+
+        repository.save(pedido);
+    }
 }
+
