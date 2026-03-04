@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="css/style.css">
+
+<title>Login ADM</title>
+</head>
+
+<body>
+
+<div class="adm-box">
+
+<h2>Login Administrador</h2>
+
+<input type="email" id="email" placeholder="Email">
+
+<input type="password" id="senha" placeholder="Senha">
+
+<button onclick="login()">Entrar</button>
+
+</div>
+
+<script>
+
+function login(){
+
+let email = document.getElementById("email").value;
+let senha = document.getElementById("senha").value;
+
+if(email == "admin@andromeda.com" && senha == "1234"){
+
+localStorage.setItem("admLogado","sim");
+
+window.location.href = "painel.html";
+
+}
+
+else{
+
+alert("Email ou senha incorretos");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Login Dark/Light Mode</title>
+</head>
+<body>
+    <body>
+
+<button id="adm_button" onclick="window.location.href='adm.html'">
+ADM
+</button>
+
+    <main id="container">
+        <form action="" id="login_form">
+            <div id="form_header">
+                <h1>Login</h1>
+                 <i id="mode_icon" class="fa-solid fa-moon"></i>
+            </div>
+
+            <div id="social_midia">
+                <a href="#">
+                    <img src="img/fecebook.png.png" alt="facebook logo"></a>
+
+                <a href="#">
+                    <img src="img/google.png.png" alt="google  logo"></a>
+
+                <a href="#">
+                    <img src="img/github.png.png" alt="github logo"></a>
+            </div>
+            <div id="inputs">
+                <div class="input_box">
+                    <label for="name">
+                        name
+                        <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                            <input type="text" id="name" name="name">
+                        </div>
+                    </label>
+                </div>
+
+             <div class="input_box">
+                    <label for="email">
+                        E-mail
+                        <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="email" name="E-mail">
+                        </div>
+                    </label>
+                </div>
+
+                <div class="input_box">
+                    <label for="password">
+                        password
+                        <div class="input-field">
+                        <i class="fa-solid fa-key"></i>
+                            <input type="password" id="password" name="password">
+                        </div>
+                    </label>
+
+                    <div id="forgot_password">
+                        <a href="#">
+                            forgot your password
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" id="login_button">
+                login
+            </button>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedido de Pães</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #6a0dad, #a020f0, #ffcc00);
+}
+
+/* CARD CENTRAL */
+.card {
+    background: #ffffff;
+    padding: 35px 30px;
+    border-radius: 18px;
+    width: 340px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+.card h2 {
+    color: #000;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+/* INPUT GROUP */
+.input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: #000;
+    font-size: 14px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 11px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1.8px solid #ddd;
+    font-size: 14px;
+    transition: 0.25s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #7b2cff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(123,44,255,0.25);
+}
+
+/* BOTÃO */
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: #6a0dad;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.25s;
+}
+
+button:hover {
+    background: #4b0082;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* RESPONSIVO */
+@media (max-width: 420px) {
+    .card {
+        width: 90%;
+        padding: 28px 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>🥖 Pedido de Pães</h2>
+
+    <form id="formPedido">
+
+        <div class="input-group">
+            <label>Nome do Cliente</label>
+            <input id="nome" type="text" placeholder="Digite seu nome" required>
+        </div>
+
+        <div class="input-group">
+            <label>Número de Telefone</label>
+            <input id="telefone" type="tel" placeholder="(00) 00000-0000" required>
+        </div>
+
+        <div class="input-group">
+            <label>Quantidade de Pães</label>
+            <input id="quantidade" type="number" min="1" placeholder="Ex: 10" required>
+        </div>
+
+        <div class="input-group">
+            <label>Unidade</label>
+            <select id="unidade" required>
+                <option value="">Selecione</option>
+                <option>Unidade Órion</option>
+                <option>Unidade Fênix</option>
+                <option>Unidade Sirius</option>
+                <option>Unidade Alpha</option>
+                <option>Unidade Scorpion</option>
+                <option>Unidade Sigma</option>
+            </select>
+        </div>
+
+        <button type="submit">Enviar Pedido</button>
+    </form>
+</div>
+
+<script>
+document.getElementById("formPedido").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const dados = {
+        nomeCliente: document.getElementById("nome").value,
+        telefone: document.getElementById("telefone").value,
+        quantidadePao: parseInt(document.getElementById("quantidade").value),
+        unidade: document.getElementById("unidade").value
+    };
+
+    try {
+        const resposta = await fetch("/pedidos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dados)
+        });
+
+        if (resposta.ok) {
+            alert("✅ Pedido enviado!");
+            document.getElementById("formPedido").reset();
+        } else {
+            alert("❌ Erro ao salvar");
+        }
+    } catch (erro) {
+        alert("❌ Erro de conexão com o servidor");
+        console.error(erro);
+    }
+});
+</script>
+
+</body>
+</html>

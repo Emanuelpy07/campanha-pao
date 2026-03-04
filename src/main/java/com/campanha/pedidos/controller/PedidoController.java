@@ -20,12 +20,14 @@ public class PedidoController  {
     @PostMapping
     public Pedidos salvar(@RequestParam String nome,
                           @RequestParam String telefone,
-                          @RequestParam int quantidade) {
+                          @RequestParam int quantidade,
+                          @RequestParam String unidade){
 
         Pedidos pedido = new Pedidos();
         pedido.setNomeCliente(nome);
         pedido.setTelefone(telefone);
         pedido.setQuantidadePao(quantidade);
+    
 
         return repository.save(pedido);
     }
