@@ -1,128 +1,126 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pedido de Pães</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Pães</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
+    <style>
+        * {
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial,sans-serif;
+        }
 
-body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #6a0dad, #a020f0, #ffcc00);
-}
+        body {
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:linear-gradient(135deg,#6a0dad,#a020f0,#ffcc00);
+        }
 
-/* CARD CENTRAL */
-.card {
-    background: #ffffff;
-    padding: 35px 30px;
-    border-radius: 18px;
-    width: 340px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-    text-align: center;
-}
+        .card {
+        background:#ffffff;
+        padding:35px 30px;
+        border-radius:18px;
+        width:340px;
+        box-shadow:0 15px 40px rgba(0,0,0,0.25);
+        text-align:center;
+        }
 
-.card h2 {
-    color: #000;
-    margin-bottom: 25px;
-    font-size: 28px;
-}
+        .card h2 {
+        color:#000;
+        margin-bottom:25px;
+        font-size:28px;
+        }
 
-/* INPUT GROUP */
-.input-group {
-    text-align: left;
-    margin-bottom: 18px;
-}
+        .input-group {
+        text-align:left;
+        margin-bottom:18px;
+        }
 
-.input-group label {
-    font-weight: bold;
-    color: #000;
-    font-size: 14px;
-}
+        .input-group label {
+        font-weight:bold;
+        color:#000;
+        font-size:14px;
+        }
 
-.input-group input,
-.input-group select {
-    width: 100%;
-    padding: 11px;
-    margin-top: 6px;
-    border-radius: 8px;
-    border: 1.8px solid #ddd;
-    font-size: 14px;
-    transition: 0.25s;
-}
+        .input-group input,
+        .input-group select {
+        width:100%;
+        padding:11px;
+        margin-top:6px;
+        border-radius:8px;
+        border:1.8px solid #ddd;
+        font-size:14px;
+        transition:0.25s;
+        }
 
-.input-group input:focus,
-.input-group select:focus {
-    border-color: #7b2cff;
-    outline: none;
-    box-shadow: 0 0 8px rgba(123,44,255,0.25);
-}
+        .input-group input:focus,
+        .input-group select:focus {
+        border-color:#7b2cff;
+        outline:none;
+        box-shadow:0 0 8px rgba(123,44,255,0.25);
+        }
 
-/* BOTÃO */
-button {
-    width: 100%;
-    padding: 13px;
-    border: none;
-    border-radius: 10px;
-    background: #6a0dad;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: 0.25s;
-}
+        button {
+        width:100%;
+        padding:13px;
+        border:none;
+        border-radius:10px;
+        background:#6a0dad;
+        color:#fff;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+        margin-top:10px;
+        transition:0.25s;
+        }
 
-button:hover {
-    background: #4b0082;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-}
+        button:hover {
+        background:#4b0082;
+        transform:translateY(-2px);
+        box-shadow:0 10px 20px rgba(0,0,0,0.25);
+        }
 
-/* RESPONSIVO */
-@media (max-width: 420px) {
-    .card {
-        width: 90%;
-        padding: 28px 22px;
-    }
-}
-</style>
+        @media (max-width:420px) {
+        .card {
+        width:90%;
+        padding:28px 22px;
+        }
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="card">
+
     <h2>🥖 Pedido de Pães</h2>
 
-    <form action="/pedidos" method="POST">
+    <form id="formPedido">
 
         <div class="input-group">
             <label>Nome do Cliente</label>
-            <input name="nome" type="text" required>
+            <input id="nome" name="nome" type="text" required>
         </div>
 
         <div class="input-group">
             <label>Número de Telefone</label>
-            <input name="telefone" type="tel" required>
+            <input id="telefone" name="telefone" type="tel" required>
         </div>
 
         <div class="input-group">
             <label>Quantidade de Pães</label>
-            <input name="quantidade" type="number" required>
+            <input id="quantidade" name="quantidade" type="number" required>
         </div>
 
         <div class="input-group">
             <label>Unidade</label>
-            <select name="unidade" required>
+            <select id="unidade" name="unidade" required>
                 <option value="">Selecione</option>
                 <option>Unidade Órion</option>
                 <option>Unidade Fênix</option>
@@ -136,53 +134,68 @@ button:hover {
         <button type="submit">Enviar Pedido</button>
 
     </form>
+
 </div>
 
 <script>
+
     document.getElementById("formPedido").addEventListener("submit", async function(e) {
-        e.preventDefault();
 
-        const nome = document.getElementById("nome").value;
-        const telefone = document.getElementById("telefone").value;
-        const quantidade = document.getElementById("quantidade").value;
-        const unidade = document.getElementById("unidade").value;
+    e.preventDefault();
 
-        const dados = new URLSearchParams();
-        dados.append("nome", nome);
-        dados.append("telefone", telefone);
-        dados.append("quantidade", quantidade);
-        dados.append("unidade", unidade);
+    const nome = document.getElementById("nome").value;
+    const telefone = document.getElementById("telefone").value;
+    const quantidade = document.getElementById("quantidade").value;
+    const unidade = document.getElementById("unidade").value;
 
-        try {
-            const resposta = await fetch("/pedidos", {
-                method: "POST",
-                body: dados
-            });
+    const dados = new URLSearchParams();
 
-            if (resposta.ok) {
+    dados.append("nome", nome);
+    dados.append("telefone", telefone);
+    dados.append("quantidade", quantidade);
+    dados.append("unidade", unidade);
 
-                document.body.innerHTML = `
-                    <div style="text-align:center;margin-top:120px;font-family:sans-serif;">
-                        <h2> Pedido enviado com sucesso!</h2>
-                        <p>Obrigado <b>${nome}</b></p>
-                        <p>Seu pedido de <b>${quantidade}</b> pães foi registrado.</p>
-                        <br>
-                        <button onclick="location.reload()"
-                        style="padding:10px 20px;font-size:16px;cursor:pointer;">
-                            Fazer novo pedido
-                        </button>
-                    </div>
-               `;
+    try {
 
-            } else {
-                alert(" Erro ao salvar pedido");
-            }
-
-        } catch (erro) {
-            alert("Erro de conexão com o servidor");
-            console.error(erro);
-        }
+    const resposta = await fetch("/pedidos", {
+    method: "POST",
+    body: dados
     });
+
+    if(resposta.ok){
+
+    document.body.innerHTML = `
+    <div style="text-align:center;margin-top:120px;font-family:sans-serif;">
+    <h2>Pedido enviado com sucesso!</h2>
+    <p>Obrigado <b>${nome}</b></p>
+    <p>Seu pedido de <b>${quantidade}</b> pães foi registrado.</p>
+
+    <br>
+
+    <button onclick="location.reload()"
+    style="padding:10px 20px;font-size:16px;cursor:pointer;">
+    Fazer novo pedido
+    </button>
+
+    </div>
+    `;
+
+    }else{
+
+    alert("Erro ao salvar pedido");
+
+    }
+
+    }catch(erro){
+
+    alert("Erro de conexão com servidor");
+
+    console.error(erro);
+
+    }
+
+    });
+
 </script>
 
 </body>
