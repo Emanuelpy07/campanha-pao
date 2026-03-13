@@ -157,10 +157,10 @@
 
     try {
 
-    const resposta = await fetch("/pedidos", {
+    const resposta = await fetch(window.location.origin + "/pedidos", {
     method: "POST",
     body: dados
-    });
+});
 
     if(resposta.ok){
 
