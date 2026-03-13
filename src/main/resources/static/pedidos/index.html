@@ -103,26 +103,26 @@ button:hover {
 <div class="card">
     <h2>🥖 Pedido de Pães</h2>
 
-    <form id="formPedido" onsubmit="return false;">
+    <form action="/pedidos" method="POST">
 
         <div class="input-group">
             <label>Nome do Cliente</label>
-            <input id="nome" name="nome" type="text" required>
+            <input name="nome" type="text" required>
         </div>
 
         <div class="input-group">
             <label>Número de Telefone</label>
-            <input id="telefone" name="telefone" type="tel" required>
+            <input name="telefone" type="tel" required>
         </div>
 
         <div class="input-group">
             <label>Quantidade de Pães</label>
-            <input id="quantidade" name="quantidade" type="number" required>
+            <input name="quantidade" type="number" required>
         </div>
 
         <div class="input-group">
             <label>Unidade</label>
-            <select id="unidade" name="unidade" required>
+            <select name="unidade" required>
                 <option value="">Selecione</option>
                 <option>Unidade Órion</option>
                 <option>Unidade Fênix</option>
