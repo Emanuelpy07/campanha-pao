@@ -12,11 +12,11 @@ import com.campanha.pedidos.repository.PedidoRepository;
 @RequestMapping("/pedidos")
 
 public class PedidoController {
+
     @Autowired
     private PedidoRepository repository;
 
     // Criar pedido
-
     @PostMapping
     public void salvar(@RequestParam String nome,
                        @RequestParam String telefone,
@@ -29,7 +29,6 @@ public class PedidoController {
         pedido.setQuantidadePao(quantidade);
         pedido.setStatus("PENDENTE");
 
-
         repository.save(pedido);
     }
 
@@ -38,7 +37,6 @@ public class PedidoController {
     public List<Pedidos> listar() {
         return repository.findAll();
     }
-
 
     // Deletar
     @DeleteMapping("/{id}")
@@ -62,6 +60,12 @@ public class PedidoController {
         pedido.setStatus("RETIRADO");
 
         repository.save(pedido);
+    }
+
+
+    @GetMapping("/ping")
+    public String ping() {
+        return "API funcionando";
     }
 }
 
